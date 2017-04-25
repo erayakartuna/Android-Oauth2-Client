@@ -6,7 +6,7 @@ This package provides simple oauth2 management.
 #### Set To Consts.class 
 
 ```java
- public static String site_url = "http://akdemistanbul.com.tr";
+    public static String site_url = "http://akdemistanbul.com.tr";
     public static String refresh_uri = "oauth2/refresh_token";
     public static String login_uri = "oauth2/login";
     public static String client_id = "client2";
