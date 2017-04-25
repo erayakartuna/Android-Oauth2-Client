@@ -25,6 +25,15 @@ public class Oauth2Client {
     protected TokenListener finishListener;
     protected Token token;
 
+
+    public Oauth2Client(Context context)
+    {
+        this.context = context;
+        this.consts = new Consts();
+        this.finishListener = null;
+        this.token = new Token(context);
+    }
+
     public Oauth2Client(Context context, TokenListener finishListener)
     {
         this.context = context;
@@ -34,10 +43,13 @@ public class Oauth2Client {
     }
 
     /**
-     * Check Access Token Status
+     * Check Acces Token
+     * @param finishListener
      */
-    public void checkAccessToken()
+    public void checkAccessToken(TokenListener finishListener)
     {
+        this.finishListener = finishListener;
+
         Token token = new Token(this.context);
         if(token.isExpired())
         {
@@ -59,10 +71,12 @@ public class Oauth2Client {
      *
      * @param email
      * @param password
-     * @param registration_id
+     * @param finishListener
      */
-    public void login(String email,String password)
+    public void login(String email,String password,TokenListener finishListener)
     {
+        this.finishListener = finishListener;
+
         HashMap<String,String> urlParameters = new HashMap<>();
         urlParameters.put("username",email);
         urlParameters.put("password",password);
